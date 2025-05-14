@@ -2,15 +2,14 @@ import streamlit as st
 import bcrypt
 
 st.set_page_config(
-    page_title="Password Hasher for Streamlit",
+    page_title="Gerador Hasher",
     page_icon="🔐",
     layout="centered"
 )
 
-st.title("🔐 Password Hasher for Streamlit")
+st.title("🔐 Gerador Hasher")
 st.write("""
-This tool generates Bcrypt password hashes compatible with Streamlit Authenticator.
-Enter your password below, then copy the hash and send it to your administrator.
+Essa ferramenta gera um hasher que você deverá copiar e enviar ao Dhiego.
 """)
 
 def hash_password(password):
@@ -22,42 +21,42 @@ def hash_password(password):
     return hashed.decode('utf-8')
 
 with st.form("hash_form"):
-    password = st.text_input("Enter your password", type="password")
-    password_confirm = st.text_input("Confirm your password", type="password")
-    submit_button = st.form_submit_button("Generate Hash")
+    password = st.text_input("Insira uma senha desejada", type="password")
+    password_confirm = st.text_input("Confirme a senha", type="password")
+    submit_button = st.form_submit_button("Gerar Hash")
     
     if submit_button:
         if not password:
-            st.error("Please enter a password")
+            st.error("Insira a senha")
         elif password != password_confirm:
-            st.error("Passwords don't match. Please try again.")
+            st.error("As senhas não conferem, por favor, verifique.")
         else:
             try:
                 # Generate the bcrypt hash
                 hashed_password = hash_password(password)
                 
-                st.success("Password successfully hashed!")
+                st.success("Hash gerado com sucesso!")
                 
-                st.markdown("### Your Password Hash:")
+                st.markdown("### Seu Hash:")
                 
-                text_area = st.text_area("Copy this hash:", value=hashed_password, height=100, key="hash_result")
+                text_area = st.text_area("Copie esse texto e envie para o Dhiego:", value=hashed_password, height=100, key="hash_result")
                 
-                # Display a sample YAML format
-                st.markdown("### Example YAML format:")
+#                 # Display a sample YAML format
+#                 st.markdown("### Example YAML format:")
                 
-                yaml_example = f"""
-username:
-  email: username@example.com
-  name: User Name
-  password: '{hashed_password}'
-"""
-                st.code(yaml_example, language="yaml")
+#                 yaml_example = f"""
+# username:
+#   email: username@example.com
+#   name: User Name
+#   password: '{hashed_password}'
+# """
+#                 st.code(yaml_example, language="yaml")
                 
-                st.info("📋 Select the hash above, copy it (Ctrl+C or Cmd+C), and send it to your administrator")
+#                 st.info("📋 Select the hash above, copy it (Ctrl+C or Cmd+C), and send it to your administrator")
                                 
-            except Exception as e:
-                st.error(f"Error generating hash: {e}")
+#             except Exception as e:
+#                 st.error(f"Error generating hash: {e}")
 
-# Footer
-st.write("---")
-st.write("Password Security Note: This tool uses Bcrypt with 12 rounds, compatible with Streamlit Authenticator.")
+# # Footer
+# st.write("---")
+# st.write("Password Security Note: This tool uses Bcrypt with 12 rounds, compatible with Streamlit Authenticator.")
