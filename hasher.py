@@ -41,22 +41,9 @@ with st.form("hash_form"):
                 
                 text_area = st.text_area("Copie esse texto e envie para o Dhiego:", value=hashed_password, height=100, key="hash_result")
                 
-                # Display a sample YAML format
-#                 st.markdown("### Example YAML format:")
-                
-#                 yaml_example = f"""
-# username:
-#   email: username@example.com
-#   name: User Name
-#   password: '{hashed_password}'
-# """
-#                 st.code(yaml_example, language="yaml")
-                
-#                 st.info("📋 Select the hash above, copy it (Ctrl+C or Cmd+C), and send it to your administrator")
-                                
-#             except Exception as e:
-#                 st.error(f"Error generating hash: {e}")
+            except Exception as e:
+                st.error(f"Erro ao gerar hash: {e}")
 
 # Footer
-# st.write("---")
-# st.write("Password Security Note: This tool uses Bcrypt with 12 rounds, compatible with Streamlit Authenticator.")
+st.write("---")
+st.write("Nota: A senha original não pode ser recuperada a partir deste hash.")
