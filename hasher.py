@@ -58,5 +58,5 @@ with st.form("hash_form"):
 #                 st.error(f"Error generating hash: {e}")
 
 # Footer
-st.write("---")
-st.write("Password Security Note: This tool uses Bcrypt with 12 rounds, compatible with Streamlit Authenticator.")
+# st.write("---")
+# st.write("Password Security Note: This tool uses Bcrypt with 12 rounds, compatible with Streamlit Authenticator.")
